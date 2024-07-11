@@ -4,69 +4,51 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <style>
         * {
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
-        body {
-
-            background-color: #015958;
-            font-family: Arial, sans-serif;
-        }
-
 
         main {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            height: 100vh;
+            padding-top: 20px;
+            margin-top: 70px;
+            width: 100%;
+            background-color: #e0f7fa;
             text-align: center;
         }
 
-        h1 {
+        main h1 {
+            font-size: 60px;
+        }
+
+        main p {
             font-size: 40px;
         }
 
-        p {
-            font-size: 30px;
+        .cabecalho {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s ease;
+            text-align: center;
+            --rotate-direction: rotate(5deg);
         }
 
-        ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        li {
-            background-color: white;
-            border: 1px solid black;
-            border-radius: 15px;
-            margin: 5px 0;
-            padding: 10px;
-            font-size: 30px;
-        }
-
-        li a {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            padding: 10px;
-        }
-
-        li a:hover {
-            background-color: cadetblue;
-            border-radius: 15px;
+        .cabecalho.rotating {
+            transform: translate(-50%, -50%) scale(1.1) var(--rotate-direction);
+            color: white;
         }
     </style>
-
 </head>
 
 <body>
+    <?php include ('menu.php'); ?>
 
     <main>
-        <div class="cabecalho">
+        <div class="cabecalho" data-rotate="right">
             <h1>
                 Seja Bem Vindo
             </h1>
@@ -74,37 +56,41 @@
                 O que deseja fazer?
             </p>
         </div>
-        <div class="menu">
-            <div class="container-menu">
-                <div class="container-menu">
-                    <ul class="container-menu--items">
-                        <li>
-                            <a class="container-menu--item"
-                                href="controller.php?controller=UsuarioController&method=cadastrar_usuario">Cadastrar
-                                Usuario</a>
-                        </li>
-                        <li>
-                            <a class="container-menu--item"
-                                href="controller.php?controller=UsuarioController&method=consultar_usuario">Consultar
-                                Usuarios</a>
-                        </li>
-                        <li>
-                            <a class="container-menu--item"
-                                href="controller.php?controller=UsuarioController&method=nova_tarefa">Alterar
-                                Usuario</a>
-                        </li>
-                        <li>
-                            <a class="container-menu--item"
-                                href="controller.php?controller=UsuarioController&method=listar_tarefa">Excluir
-                                Usuario</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
     </main>
 
+    <script>
+        const cabecalho = document.querySelector('.cabecalho');
+        let contador = 0;
 
+        function rotateAndChangeColor() {
+            if (contador >= 6) return;
+
+            contador++;
+            const main = document.getElementsByTagName('main')[0];
+            const menu = document.getElementsByClassName('container-menu')[0];
+            const menuItems = document.querySelectorAll('.container-menu--item');
+
+            if (cabecalho.dataset.rotate === 'right') {
+                cabecalho.style.setProperty('--rotate-direction', 'rotate(-5deg)');
+                cabecalho.dataset.rotate = 'left';
+                main.style.backgroundColor = '#023535';
+                menu.style.backgroundColor = '#e0f7fa';
+                menuItems.forEach(item => item.style.color = 'black');
+            } else {
+                cabecalho.style.setProperty('--rotate-direction', 'rotate(5deg)');
+                cabecalho.dataset.rotate = 'right';
+                main.style.backgroundColor = '#e0f7fa';
+                menu.style.backgroundColor = '#023535';
+                menuItems.forEach(item => item.style.color = 'white');
+            }
+
+            cabecalho.classList.toggle('rotating');
+
+            setTimeout(rotateAndChangeColor, 1000);
+        }
+
+        rotateAndChangeColor();
+    </script>
 </body>
 
 </html>

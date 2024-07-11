@@ -8,11 +8,11 @@
     <style>
         * {
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background-color: #015958;
-            font-family: Arial, sans-serif;
+            background-color: #e0f7fa;
             overflow: hidden;
         }
 
@@ -57,7 +57,7 @@
         }
 
         .form-submit {
-            background-color: dodgerblue;
+            background-color: #00796b;
             color: white;
             border: none;
             border-radius: 5px;
@@ -68,7 +68,7 @@
         }
 
         .form-submit:hover {
-            background-color: #007acc;
+            background-color: #004d40;
         }
 
     </style>
@@ -82,9 +82,8 @@
         <form action="controller.php?controller=UsuarioController&method=salvar" method="POST" >
             <h1>Por Favor, insira os dados:</h1>
             <input type="hidden" name="method" value="salvar">
-            <input type="text" name="nomeCompleto" class="form-input" placeholder="Nome Completo" required>
-            <input type="text" name="apelido" class="form-input" placeholder="Apelido" required>
-            <input type="password" name="senha" class="form-input" placeholder="Senha" required>
+            <input type="text" name="nomeProduto" class="form-input" placeholder="Nome Produto" required>
+            <input type="text" name="valor" class="form-input" placeholder="Valor" required>
             <button type="submit" class="form-submit">Enviar</button>
         </form>
     </main>
