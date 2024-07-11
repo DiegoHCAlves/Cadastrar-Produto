@@ -1,6 +1,6 @@
-# usuarios-php
+# produtos-php
 
-### [x] Cadastrar usuario 
-### [x] Pesquisar usuarios 
-### [x] Editar usuario 
-### [x] Excluir usuario 
+### [x] Cadastrar produto 
+### [x] Pesquisar produtos 
+### [x] Editar produto 
+### [x] Excluir produto 
